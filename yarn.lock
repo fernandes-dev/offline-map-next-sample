@@ -1304,6 +1304,11 @@ object.values@^1.1.5:
     define-properties "^1.1.3"
     es-abstract "^1.19.1"
 
+offline-map-react@^3.4.13:
+  version "3.4.13"
+  resolved "https://registry.yarnpkg.com/offline-map-react/-/offline-map-react-3.4.13.tgz#8e2d2214048882b349078a17808d58bee1ad0ecf"
+  integrity sha512-WHPq5btn0dPz2XavhRvqceegDM2X1X076CafPsWXR13+GHXWcRI4S5nO/kboJyV07U+6qEWIcxf4xtWCdqNFkw==
+
 once@^1.3.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/once/-/once-1.4.0.tgz#583b1aa775961d4b113ac17d9c50baef9dd76bd1"

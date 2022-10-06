@@ -24,3 +24,8 @@ a {
     background: black;
   }
 }
+
+#map {
+  height: 400px;
+  width: 800px;
+}

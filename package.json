@@ -2,6 +2,7 @@
   "name": "offline-map-nextjs",
   "version": "0.1.0",
   "private": true,
+  "type": "commonjs",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,6 +11,7 @@
   },
   "dependencies": {
     "next": "12.2.3",
+    "offline-map-react": "^3.4.13",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
