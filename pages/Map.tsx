@@ -4,16 +4,19 @@ import {useEffect} from "react";
 function Map() {
   const mapInstance = OfflineMap({
     checkpoints: [],
-    heatPoints: [...JSON.parse(localStorage.getItem('map-checkpoints')!)].map((c, index) => [Number(c?.position.lat), Number(c?.position.lng), 1])
+    heatPoints: []
   })
-  
+
   let events = false
 
   useEffect(() => {
     if (mapInstance.map && !events) {
       mapInstance.map.on('click', (e: any) => {
         const newCheckpoint = {id: Math.random(), position: (e as any).latlng, text: `teste${Math.random()}`}
-        const newCheckpoints = [...JSON.parse(localStorage.getItem('map-checkpoints')!), newCheckpoint]
+        const existsInLocalStorage = localStorage.getItem('map-checkpoints')
+        const checkpoints = existsInLocalStorage ? JSON.parse(existsInLocalStorage) : []
+
+        const newCheckpoints = [...checkpoints, newCheckpoint]
 
         mapInstance.setHeatPoints(newCheckpoints.map((c, index) => [Number(c?.position.lat), Number(c?.position.lng), 1]))
 
@@ -30,7 +33,20 @@ function Map() {
     }
   }, [mapInstance.userPosition])
 
-  return (mapInstance.renderMap())
+  return (<div>
+    <button onClick={() => mapInstance?.offlineMapControls().saveCurrentMapView()}>Salvar Mapa</button>
+    <button onClick={() => mapInstance?.offlineMapControls().deleteCurrentMapView()}>Excluir Mapa</button>
+
+    {mapInstance?.progressSaveMap > 0 && (
+      <progress id="file"
+                value={Number((mapInstance?.progressSaveMap / mapInstance?.totalLayersToSave) * 100).toFixed(2)}
+                max="100">
+        {Number((mapInstance?.progressSaveMap / mapInstance?.totalLayersToSave) * 100).toFixed(2)}%
+      </progress>
+    )}
+
+    {mapInstance.renderMap()}
+  </div>)
 }
 
 export default Map
